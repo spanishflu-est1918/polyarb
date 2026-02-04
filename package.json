@@ -1,0 +1,15 @@
+{
+  "name": "polyarb",
+  "version": "0.1.0",
+  "description": "Polymarket Arbitrage Scanner with Einstein Phase-Shift Detection™",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "scan": "node src/scanner.js",
+    "watch": "node src/watcher.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
+}
