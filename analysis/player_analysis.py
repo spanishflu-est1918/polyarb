@@ -64,11 +64,20 @@ class PlayerAnalyzer:
         
         # Day-of-week analysis
         daily = df.groupby('day_of_week')['price_change'].agg(['mean', 'std', 'count'])
+        
+        # Handle limited data (may not have all days)
+        weekend_days = [d for d in [5, 6] if d in daily.index]
+        weekday_days = [d for d in [0, 1, 2, 3, 4] if d in daily.index]
+        
+        weekend_std = daily.loc[weekend_days, 'std'].mean() if weekend_days else 0
+        weekday_std = daily.loc[weekday_days, 'std'].mean() if weekday_days else 0
+        
         results['daily_patterns'] = {
-            'best_day': int(daily['mean'].idxmax()),
-            'worst_day': int(daily['mean'].idxmin()),
-            'weekend_effect': float(daily.loc[[5, 6], 'std'].mean() - daily.loc[[0, 1, 2, 3, 4], 'std'].mean()),
-            'data': daily.to_dict()
+            'best_day': int(daily['mean'].idxmax()) if len(daily) > 0 else None,
+            'worst_day': int(daily['mean'].idxmin()) if len(daily) > 0 else None,
+            'weekend_effect': float(weekend_std - weekday_std) if weekend_days and weekday_days else 0,
+            'data': daily.to_dict(),
+            'days_captured': list(daily.index)
         }
         
         # Round number magnetism
@@ -199,7 +208,7 @@ class PlayerAnalyzer:
         return {
             'opportunities': opportunities,
             'data_quality': {
-                'price_snapshots': len(pd.read_sql("SELECT COUNT(*) FROM price_snapshots", self.conn).iloc[0, 0]),
+                'price_snapshots': int(pd.read_sql("SELECT COUNT(*) FROM price_snapshots", self.conn).iloc[0, 0]),
                 'markets_tracked': len(pd.read_sql("SELECT DISTINCT market_id FROM price_snapshots", self.conn))
             },
             'recommendation': 'COLLECT MORE DATA' if len(opportunities) < 2 else 'BACKTEST OPPORTUNITIES'
