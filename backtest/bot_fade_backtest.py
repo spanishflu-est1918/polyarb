@@ -195,7 +195,7 @@ class BotFadeBacktest:
                 should_exit, reason = self.should_exit(pos, yes_price)
                 
                 # Also exit if held too long
-                if position_periods.get(market_id, 0) > 20:
+                if position_periods.get(market_id, 0) > 8:  # Faster timeout
                     should_exit = True
                     reason = 'timeout'
                 
