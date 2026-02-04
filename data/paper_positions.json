@@ -1,0 +1,72 @@
+{
+  "517310": {
+    "market_id": "517310",
+    "question": "Will Trump deport less than 250,000?",
+    "side": "yes",
+    "entry_price": 0.029,
+    "entry_time": "2026-02-04T13:44:35.019255"
+  },
+  "517313": {
+    "market_id": "517313",
+    "question": "Will Trump deport 500,000-750,000- people?",
+    "side": "yes",
+    "entry_price": 0.064,
+    "entry_time": "2026-02-04T13:44:35.019261"
+  },
+  "517314": {
+    "market_id": "517314",
+    "question": "Will Trump deport 750,000-1,000,000 people?",
+    "side": "yes",
+    "entry_price": 0.0105,
+    "entry_time": "2026-02-04T13:44:35.019263"
+  },
+  "517315": {
+    "market_id": "517315",
+    "question": "Will Trump deport 1,000,000-1,250,000 people?",
+    "side": "yes",
+    "entry_price": 0.007,
+    "entry_time": "2026-02-04T13:44:35.019264"
+  },
+  "517316": {
+    "market_id": "517316",
+    "question": "Will Trump deport 1,250,000-1,500,000 people?",
+    "side": "yes",
+    "entry_price": 0.0025,
+    "entry_time": "2026-02-04T13:44:35.019265"
+  },
+  "517317": {
+    "market_id": "517317",
+    "question": "Will Trump deport 1,500,000-1,750,000 people?",
+    "side": "yes",
+    "entry_price": 0.004,
+    "entry_time": "2026-02-04T13:44:35.019267"
+  },
+  "517318": {
+    "market_id": "517318",
+    "question": "Will Trump deport 1,750,000-2,000,000 people?",
+    "side": "yes",
+    "entry_price": 0.0025,
+    "entry_time": "2026-02-04T13:44:35.019268"
+  },
+  "517319": {
+    "market_id": "517319",
+    "question": "Will Trump deport 2,000,000 or more people?",
+    "side": "yes",
+    "entry_price": 0.0025,
+    "entry_time": "2026-02-04T13:44:35.019269"
+  },
+  "517321": {
+    "market_id": "517321",
+    "question": "Will Trump deport 750,000 or more people in 2025?",
+    "side": "yes",
+    "entry_price": 0.066,
+    "entry_time": "2026-02-04T13:44:35.019270"
+  },
+  "521944": {
+    "market_id": "521944",
+    "question": "Will Elon and DOGE cut less than $50b in federal s",
+    "side": "no",
+    "entry_price": 0.957,
+    "entry_time": "2026-02-04T13:44:35.019271"
+  }
+}
