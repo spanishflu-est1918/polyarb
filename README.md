@@ -1,96 +1,189 @@
 # PolyArb 🔮
 
-**Polymarket Arbitrage Scanner with Einstein-Heisenberg Phase-Shift Detection™**
+**Polymarket Alpha Extraction System**
 
-> "Finding dollars on sale for 94 cents since 2026"
+> "Beat the market by understanding the players, not predicting the outcomes"
 
-## What This Does
+## Philosophy
 
-Scans Polymarket for arbitrage opportunities using totally legitimate quantum mathematics:
+Most traders try to predict events. That's gambling.
 
-1. **Basic Arb** — YES + NO < $1 (free money if markets are mispriced)
-2. **Correlated Date Arb** — Multiple markets about same event with different dates
-3. **Mutually Exclusive Arb** — Multi-outcome markets where sum of prices < $1
+Smart money plays the players:
+- **Detect bot patterns** → front-run their rebalancing
+- **Exploit human psychology** → fade FOMO, buy panic
+- **Find structural edges** → wide spreads, round number magnetism
+- **Validate everything** → if it doesn't backtest, it doesn't trade
 
-## Quantum Features
+## System Architecture
 
-- 🌀 Fibonacci-Mandelbrot Fractal Edge Detection
-- ⚛️ Einstein Phase-Shift Coefficient Analysis  
-- 😈 Maxwell's Arbitrage Demon Score
-- 🔮 Schrödinger Wave Function Collapse Prediction
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     DATA LAYER                              │
+│  collectors/polymarket_collector.py                         │
+│  → Price snapshots every 60s                                │
+│  → SQLite time-series database                              │
+│  → Run 24/7 to build historical dataset                     │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ANALYSIS LAYER                            │
+│  analysis/player_analysis.py                                │
+│  → Time-of-day patterns                                     │
+│  → Bot detection (activity uniformity, price precision)     │
+│  → Round number magnetism                                   │
+│  → Mean reversion measurement                               │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  BACKTEST LAYER                             │
+│  backtest/engine.py + strategies.py                         │
+│  → Realistic fees (1%) and slippage (0.5%)                  │
+│  → Risk metrics: Sharpe, Sortino, VaR, CVaR, Max DD         │
+│  → BULLSHIT DETECTION:                                      │
+│     • Curve fitting (Sharpe > 3 = suspicious)               │
+│     • Pennies/steamroller (high win rate + huge losses)     │
+│     • Statistical significance (need 30+ trades)            │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  EXECUTION LAYER                            │
+│  (Paper trade first, always)                                │
+│  → Only strategies that pass backtest validation            │
+│  → Position sizing based on Kelly criterion                 │
+│  → Risk limits enforced                                     │
+└─────────────────────────────────────────────────────────────┘
+```
 
-*(These are 100% real quantum physics terms applied to financial markets in ways that would make any physicist cry)*
-
-## Install
+## Quick Start
 
 ```bash
+# Install
 git clone https://github.com/spanishflu-est1918/polyarb.git
 cd polyarb
-npm install
+pip install -r requirements.txt
+npm install  # For the scanner
+
+# Step 1: Start collecting data (run in background)
+python main.py collect
+
+# Step 2: Check status
+python main.py status
+
+# Step 3: Analyze patterns (after 24+ hours of data)
+python main.py analyze
+
+# Step 4: Backtest strategies
+python main.py backtest
+
+# Bonus: Quick market scan
+python main.py scan
 ```
 
-## Usage
+## Strategies Tested
 
-### One-time scan
-```bash
-npm run scan
+| Strategy | Hypothesis | Reality Check |
+|----------|------------|---------------|
+| `basic_arb` | YES + NO < 1.0 = free money | Bots close these instantly |
+| `mean_reversion` | Prices that spike revert | Sometimes works, needs data |
+| `spread_capture` | Wide spreads = inefficiency | Requires market making infra |
+| `momentum` | Winners keep winning | Usually LOSES in prediction markets |
+| `bot_front_run` | Bots rebalance predictably | SPECULATIVE - our main thesis |
+
+## Bullshit Detection
+
+Every backtest is screened for:
+
+### 1. Curve Fitting
+```
+Sharpe > 3.0 → Suspicious (real strategies rarely exceed 2.0)
+Win rate > 80% with < 100 trades → Probably overfit
 ```
 
-### Continuous watcher with Telegram alerts
-```bash
-export TELEGRAM_BOT_TOKEN="your_bot_token"
-export TELEGRAM_CHAT_ID="your_chat_id"
-npm run watch
+### 2. Pennies in Front of Steamroller
+```
+Win rate > 70% AND (avg_loss / avg_win) > 5 → DANGER
+You're picking up nickels until a truck hits you
 ```
 
-## Sample Output
+### 3. Statistical Significance
+```
+< 30 trades → Insufficient data
+Need enough samples to distinguish skill from luck
+```
+
+## Output Example
 
 ```
 ╔══════════════════════════════════════════════════════════════════╗
-║  QUANTUM ARBITRAGE ANALYSIS REPORT                               ║
+║  BACKTEST RESULTS - ✅ VALID
 ╠══════════════════════════════════════════════════════════════════╣
-║  Market Cluster: US strikes Iran (3 date markets)                ║
+║  RETURNS
+║  ├─ Total Return: +12.34%
+║  ├─ Sharpe Ratio: 1.45
+║  ├─ Sortino Ratio: 2.10
+║  └─ Calmar Ratio: 0.89
 ╠══════════════════════════════════════════════════════════════════╣
-║  PHASE-SHIFT ANALYSIS                                            ║
-║  ├─ Raw Deviation: 0.0300                                        ║
-║  ├─ Quantum Adjusted: 0.0313                                     ║
-║  ├─ Phase Angle: 76.42°                                          ║
-║  └─ Wave Function: COLLAPSED_PROFITABLE                          ║
+║  RISK (THIS IS WHAT MATTERS)
+║  ├─ Max Drawdown: -13.87%
+║  ├─ VaR 95%: -2.34%
+║  ├─ CVaR 95%: -3.56%
+║  └─ Worst Trade: -5.21%
 ╠══════════════════════════════════════════════════════════════════╣
-║  FIBONACCI-MANDELBROT FRACTALS                                   ║
-║  ├─ Level: FIBONACCI_0.236                                       ║
-║  ├─ Strength: 1.2712                                             ║
-║  └─ 🌀 FRACTAL EDGE DETECTED                                     ║
-╠══════════════════════════════════════════════════════════════════╣
-║  MAXWELL'S DEMON SCORE                                           ║
-║  ├─ Demon Score: 42.0690                                         ║
-║  ├─ Entropy Level: 1.386                                         ║
-║  ├─ Thermal Efficiency: 89.23%                                   ║
-║  └─ 😈 DEMON ACTIVATED                                           ║
-╠══════════════════════════════════════════════════════════════════╣
-║  RECOMMENDATION                                                  ║
-║  🚀 EXECUTE: Wave function collapsed favorably. Moon imminent.   ║
+║  BULLSHIT DETECTION
+║  ├─ Curve Fitted: ✓ NO
+║  ├─ Pennies/Steamroller: ✓ NO
+║  └─ Sufficient Trades: ✓ YES
 ╚══════════════════════════════════════════════════════════════════╝
 ```
 
+## Data Collection
+
+The collector captures:
+- **Price snapshots** (yes_price, no_price, spread) every 60s
+- **Volume** (24h trading volume)
+- **Liquidity** (order book depth)
+- **Market metadata** (question, end date, outcomes)
+
+Data is stored in SQLite at `data/polymarket.db`.
+
+**Minimum recommended collection time:** 
+- 24 hours for basic patterns
+- 7 days for day-of-week effects
+- 30 days for robust backtesting
+
+## The Real Alpha
+
+After extensive analysis, here's what actually might work:
+
+1. **Weekend Inefficiency** - Lower bot activity = wider spreads = more edge
+2. **Round Number Magnetism** - Prices cluster at 0.25/0.50/0.75
+3. **News Lag** - Retail FOMO arrives 5-15 min after events
+4. **Overreaction Decay** - Big moves partially revert in 1-4 hours
+
+**What probably doesn't work:**
+- Simple price arbitrage (bots are faster)
+- Momentum (prediction markets mean-revert)
+- Anything that sounds too easy
+
 ## Disclaimer
 
-⚠️ **THIS IS FOR PAPER TRADING AND ENTERTAINMENT ONLY**
+⚠️ **THIS IS FOR RESEARCH AND PAPER TRADING ONLY**
 
-- The quantum math is satire
-- Real arb windows close in milliseconds
-- You will not make $1.4M from a Twitter thread
-- DYOR, NFA, etc.
-
-## Credits
-
-Inspired by a definitely-not-promotional tweet about someone who definitely made $1.4M in one week.
-
-Built with:
-- Real arbitrage detection logic
-- Fake quantum physics terminology
-- Genuine skepticism about crypto Twitter claims
+- Past performance doesn't guarantee future results
+- Markets can stay irrational longer than you can stay solvent
+- Backtest results include survivorship bias
+- Real execution will be worse than simulation
+- This is not financial advice
 
 ## License
 
-MIT — Use at your own risk. The Maxwell's Demon is not responsible for financial losses.
+MIT - Use at your own risk.
+
+---
+
+*"The market can remain irrational longer than you can remain solvent."* - Keynes
+
+*"But with enough data, you can at least measure how irrational."* - PolyArb
