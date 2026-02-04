@@ -173,7 +173,18 @@ function detectMutuallyExclusiveArb(market) {
   const outcomes = market.outcomes || [];
   if (outcomes.length < 3) return null;
   
-  const prices = market.outcomePrices?.map(p => parseFloat(p)) || [];
+  // Handle both array and string formats
+  let prices = [];
+  if (Array.isArray(market.outcomePrices)) {
+    prices = market.outcomePrices.map(p => parseFloat(p));
+  } else if (typeof market.outcomePrices === 'string') {
+    try {
+      prices = JSON.parse(market.outcomePrices).map(p => parseFloat(p));
+    } catch { return null; }
+  } else {
+    return null;
+  }
+  
   if (prices.length !== outcomes.length) return null;
   
   const totalCost = prices.reduce((a, b) => a + b, 0);
